@@ -1,3 +1,9 @@
-FROM node:16-alpine
+FROM ubuntu:latest
 
-RUN apk add -U git curl
+RUN apt-get -y update
+RUN apt-get -y install \
+    curl \
+    git
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install
