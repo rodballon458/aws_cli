@@ -7,6 +7,8 @@ pipeline {
           curl --version
           git --version
           aws --version
+          jq --version
+          psql --version
         '''
       }
     }
