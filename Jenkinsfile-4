@@ -1,15 +1,16 @@
 pipeline {
   agent { dockerfile true }
+  environment {
+    AWS_DEFAULT_REGION="us-east-1"
+  }
   stages {
     stage('Test') {
       steps {
-        sh '''
-          curl --version
-          git --version
-          aws --version
-          jq --version
-          psql --version
-        '''
+        withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+          sh '''
+            aws s3 ls
+          '''
+        }
       }
     }
   }
